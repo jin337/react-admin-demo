@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Switch, Route, Redirect, useLocation } from 'react-router-dom'
+import Cookie from 'js-cookie'
+import router, { RouteType } from './router/index'
 
-function App() {
+import './assets/css/react.css'
+
+export interface AppProps {}
+
+const App: React.SFC<AppProps> = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <ToLogin />
+      <Switch>
+        {router.map((route, i) => (
+          <SubRoutes key={i} {...route} />
+        ))}
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+const ToLogin = () => {
+  let location = useLocation()
+  return location.pathname === '/' ? <Redirect exact from='/' to='/login' /> : null
+}
+
+const SubRoutes = (route: RouteType) => {
+  let isBool = !route.requireAuth || !!Cookie.get('CGB-BP-USER')
+
+  return isBool ? <Route path={route.path} render={(props) => <route.component {...props} routes={route.routes} />} /> : <Redirect to='/login' />
+}
+
+export default App
