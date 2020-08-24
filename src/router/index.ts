@@ -1,9 +1,9 @@
 import Login from '../views/Login'
 import Home from '../views/Home'
 
-import AdminHome from './../components/pages/admin/Home/index'
-import TeacherHome from './../components/pages/teacher/Home/index'
-import SchoolHome from './../components/pages/school/Home/index'
+import AdminHome from './../pages/admin/Home/index'
+import TeacherHome from './../pages/teacher/Home/index'
+import SchoolHome from './../pages/school/Home/index'
 
 export interface RouteType {
   path?: string
