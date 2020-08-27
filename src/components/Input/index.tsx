@@ -1,9 +1,8 @@
 import React from 'react'
-import IconFont, { IconFontProps } from './../IconFont/index'
+import IconFont from './../IconFont/index'
 import './index.css'
 
 export interface InputProps {
-  IconFont: IconFontProps
   suffix?: string
   prefix?: string
   size?: any
@@ -12,31 +11,26 @@ export interface InputProps {
   onChange?: any
 }
 
-const Input: React.SFC<InputProps> = ({ suffix, prefix, size, value, placeholder, onChange }: InputProps) => {
-  const CommonInput = <input className={`input-affix-wrap input-${size}`} value={value} placeholder={placeholder} onChange={onChange} />
+const Input: React.SFC<InputProps> = (props: InputProps) => {
+  const { suffix, prefix, size, value, placeholder, onChange } = props
 
-  if (prefix) {
-    return (
-      <span className={`input-affix-wrap input-wrap-${size}`}>
+  return (
+    <span className={`input-affix-wrap input-wrap-${size}`}>
+      {prefix ? (
         <span className='input-prefix'>
           <IconFont type={prefix} />
         </span>
-        {CommonInput}
-      </span>
-    )
-  }
+      ) : null}
 
-  if (suffix) {
-    return (
-      <span className={`input-affix-wrap input-wrap-${size}`}>
-        {CommonInput}
+      <input className={`input-affix-wrap input-${size}`} value={value} placeholder={placeholder} onChange={onChange} />
+
+      {suffix ? (
         <span className='input-suffix'>
           <IconFont type={suffix} />
         </span>
-      </span>
-    )
-  }
-  return CommonInput
+      ) : null}
+    </span>
+  )
 }
 
 export default Input

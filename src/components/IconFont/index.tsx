@@ -5,11 +5,9 @@ export interface IconFontProps {
   iconName?: any
   font?: any
   type?: any
-  style?: any
+  style?: React.CSSProperties
   onClick?: any
 }
-
-const getIconName = (type: string) => type.toLowerCase()
 
 const iconData: any = {
   useroutlined: [
@@ -46,18 +44,15 @@ const iconData: any = {
   ]
 }
 
-const IconFont: React.SFC<IconFontProps> = ({ type, style, onClick }: IconFontProps) => {
-  const [iconName, setIconName] = useState('')
+const IconFont: React.SFC<IconFontProps> = (props: IconFontProps) => {
+  const { type, style, onClick } = props
+
+  const [iconName] = useState(type.toLowerCase())
   const [font, setFont] = useState([])
 
   useEffect(() => {
-    let key = getIconName(type)
-    setIconName(key)
-  }, [type])
-
-  useEffect(() => {
-    setFont(iconData)
-  }, [])
+    setFont(iconData[iconName])
+  }, [iconName])
 
   return (
     <span role='img' style={style} aria-label={iconName} className='anticon' onClick={onClick}>
