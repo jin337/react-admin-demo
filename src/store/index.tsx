@@ -1,15 +1,17 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import thunkMiddleware from 'redux-thunk'
 
-import DemoList from './demo-list'
-import List from './list'
+import List from './modules/list'
+import login from './modules/login'
 
 const reducer = combineReducers({
-  DemoList,
-  List
+  List,
+  login
 })
 
-const reduxDevTools = (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+const middleware = applyMiddleware(thunkMiddleware)
 
-const store = createStore(reducer, reduxDevTools)
+const store = createStore(reducer, composeWithDevTools(middleware))
 
 export default store

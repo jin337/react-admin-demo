@@ -1,18 +1,32 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import DemoList from './../../store/demo-list'
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
+// 导入组件
+import Input, { InputProps } from './../../components/Input'
+
+// 导入样式
 import './index.css'
 
+// 类型集合
 export interface LoginProps {
-  count?: any
-  dispatch?: void
+  Input: InputProps
 }
 
-const Login = ({ DemoList }: any) => {
-  const [data, setData] = useState(DemoList.newType)
+// 页面主体
+const Login: React.SFC<LoginProps> = () => {
+  const { login } = useSelector((state: any) => state)
+  const dispatch = useDispatch()
 
-  return <div className='Login'>{data}</div>
+  return (
+    <div className='login-box'>
+      <div className='card-wrap'>
+        <div className='title'>{login.themeName}</div>
+        <div>
+          <Input prefix='UserOutlined' />
+        </div>
+      </div>
+    </div>
+  )
 }
 
-export default connect(() => DemoList)(Login)
+export default Login
