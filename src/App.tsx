@@ -26,6 +26,7 @@ const SubRoutes = (route: RouteType) => {
 const App: React.SFC<AppProps> = () => {
   return (
     <BrowserRouter>
+      <ToLogin />
       <Switch>
         {router.map((route, i) => (
           <SubRoutes key={i} {...route} />
