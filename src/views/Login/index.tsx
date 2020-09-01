@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 // 导入组件
 import { Input, Checkbox, Button } from './../../components'
@@ -13,7 +13,8 @@ export interface LoginProps {}
 // 页面主体
 const Login: React.SFC<LoginProps> = () => {
   const { login } = useSelector((state: any) => state)
-  // const dispatch = useDispatch()
+  const { user } = useSelector((state: any) => state.login)
+  const dispatch = useDispatch()
 
   return (
     <div className='login-box'>
@@ -21,13 +22,25 @@ const Login: React.SFC<LoginProps> = () => {
         <div className='title'>{login.themeName}</div>
         <form className='form-box'>
           <div className='form-item'>
-            <Input prefix='UserOutlined' placeholder='请填写用户名' />
+            <Input
+              value={user.username}
+              onChange={(e: any) => dispatch({ type: 'setUser', data: { username: e.target.value } })}
+              prefix='UserOutlined'
+              placeholder='请填写用户名'
+            />
           </div>
           <div className='form-item'>
-            <Input prefix='UnlockOutlined' placeholder='请填写密码' />
+            <Input
+              value={user.password}
+              onChange={(e: any) => dispatch({ type: 'setUser', data: { password: e.target.value } })}
+              prefix='UnlockOutlined'
+              placeholder='请填写密码'
+            />
           </div>
           <div className='form-item online'>
-            <Checkbox>记住密码</Checkbox>
+            <Checkbox checked={login.remove} onChange={() => dispatch({ type: 'removeUser' })}>
+              记住密码
+            </Checkbox>
             <div className='right'>
               <Button size='large' long type='primary'>
                 登录
