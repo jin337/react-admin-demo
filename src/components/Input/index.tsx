@@ -6,13 +6,14 @@ export interface InputProps {
   suffix?: string
   prefix?: string
   size?: any
+  type?: any
   value?: any
   placeholder?: any
   onChange?: any
 }
 
 const Input: React.SFC<InputProps> = (props: InputProps) => {
-  const { suffix, prefix, size, value, placeholder, onChange } = props
+  const { suffix, prefix, size, value,type, placeholder, onChange } = props
 
   return (
     <span className={`input-affix-wrap input-wrap-${size}`}>
@@ -22,7 +23,7 @@ const Input: React.SFC<InputProps> = (props: InputProps) => {
         </span>
       ) : null}
 
-      <input className={`input-affix-wrap input-${size}`} value={value} placeholder={placeholder} onChange={onChange} />
+      <input type={type?type:'text'} className={`input-affix-wrap input-${size}`} value={value} placeholder={placeholder} onChange={onChange} />
 
       {suffix ? (
         <span className='input-suffix'>

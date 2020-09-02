@@ -2,10 +2,11 @@ import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import Cookie from 'js-cookie'
 
-// 全局路由
-import router, { RouteType } from './router/index'
 // 重置全局样式
 import './assets/css/react.css'
+
+// 全局路由
+import router, { RouteType } from './router/index'
 
 // 类型集合
 export interface AppProps {}
@@ -18,7 +19,7 @@ const ToLogin = () => {
 
 // 子页面
 const SubRoutes = (route: RouteType) => {
-  let isBool = !route.requireAuth || !!Cookie.get('CGB-BP-USER')
+  let isBool = !route.requireAuth || !!Cookie.get('REACT-ADMIN')
   return isBool ? <Route path={route.path} render={(props) => <route.component {...props} routes={route.routes} />} /> : <ToLogin />
 }
 

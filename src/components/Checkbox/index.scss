@@ -9,9 +9,7 @@
   padding: 0;
   list-style: none;
   cursor: pointer;
-  color: rgba(0, 0, 0, 0.65);
-
-  font-feature-settings: 'tnum';
+  color: rgba(0, 0, 0, .65);
 }
 .checkbox {
   font-size: 14px;
@@ -19,7 +17,7 @@
   line-height: 1.5715;
   line-height: 1;
   position: relative;
-  top: -0.09em;
+  top: -.09em;
   display: inline-block;
   box-sizing: border-box;
   margin: 0;
@@ -28,10 +26,8 @@
   cursor: pointer;
   vertical-align: middle;
   white-space: nowrap;
-  color: rgba(0, 0, 0, 0.65);
+  color: rgba(0, 0, 0, .65);
   outline: none;
-
-  font-feature-settings: 'tnum';
   input {
     position: absolute;
     z-index: 1;
@@ -57,8 +53,8 @@
   width: 16px;
   height: 16px;
   border-collapse: separate;
-  -webkit-transition: all 0.3s;
-          transition: all 0.3s;
+  -webkit-transition: all .3s;
+          transition: all .3s;
   border: 1px solid #d9d9d9;
   border-radius: 2px;
   background-color: #fff;
@@ -72,7 +68,7 @@
     width: 5.71428571px;
     height: 9.14285714px;
     content: ' ';
-    transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6), opacity 0.1s;
+    transition: all .1s cubic-bezier(.71, -.46, .88, .6), opacity .1s;
     transform: rotate(45deg) scale(0) translate(-50%, -50%);
     opacity: 0;
     border: 2px solid #fff;
@@ -80,12 +76,11 @@
     border-left: 0;
   }
 }
-
 .text {
   padding-right: 8px;
   padding-left: 8px;
+  user-select: none;
 }
-
 .checkbox-checked {
   .checkbox-inner {
     border-color: #1890ff;
@@ -94,7 +89,7 @@
       position: absolute;
       display: table;
       content: ' ';
-      transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+      transition: all .2s cubic-bezier(.12, .4, .29, 1.46) .1s;
       transform: rotate(45deg) scale(1) translate(-50%, -50%);
       opacity: 1;
       border: 2px solid #fff;
@@ -110,10 +105,7 @@
     width: 100%;
     height: 100%;
     content: '';
-    animation: antCheckboxEffect 0.36s ease-in-out;
     border: 1px solid #1890ff;
     border-radius: 2px;
-
-    animation-fill-mode: backwards;
   }
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import Cookie from 'js-cookie'
 
 // 导入组件
 import { Input, Checkbox, Button } from './../../components'
@@ -7,14 +9,23 @@ import { Input, Checkbox, Button } from './../../components'
 // 导入样式
 import './index.css'
 
-// 类型集合
-export interface LoginProps {}
-
 // 页面主体
-const Login: React.SFC<LoginProps> = () => {
-  const { login } = useSelector((state: any) => state)
-  const { user } = useSelector((state: any) => state.login)
+const Login = () => {
+  const hostory = useHistory()
   const dispatch = useDispatch()
+  const { login } = useSelector((state: any) => state)
+
+  const submit = () => {
+    let key = {
+      username: login.username,
+      password: login.password
+    }
+    let type = Object.values(key).every((e) => e !== '')
+    if (type) {
+      Cookie.set('REACT-ADMIN', key)
+      hostory.replace('/home')
+    }
+  }
 
   return (
     <div className='login-box'>
@@ -23,7 +34,7 @@ const Login: React.SFC<LoginProps> = () => {
         <form className='form-box'>
           <div className='form-item'>
             <Input
-              value={user.username}
+              value={login.username}
               onChange={(e: any) => dispatch({ type: 'setUser', data: { username: e.target.value } })}
               prefix='UserOutlined'
               placeholder='请填写用户名'
@@ -31,7 +42,8 @@ const Login: React.SFC<LoginProps> = () => {
           </div>
           <div className='form-item'>
             <Input
-              value={user.password}
+              type='password'
+              value={login.password}
               onChange={(e: any) => dispatch({ type: 'setUser', data: { password: e.target.value } })}
               prefix='UnlockOutlined'
               placeholder='请填写密码'
@@ -42,7 +54,7 @@ const Login: React.SFC<LoginProps> = () => {
               记住密码
             </Checkbox>
             <div className='right'>
-              <Button size='large' long type='primary'>
+              <Button size='large' long type='primary' onClick={submit}>
                 登录
               </Button>
             </div>

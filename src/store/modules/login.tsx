@@ -1,10 +1,8 @@
 const initialState = {
   themeName: '这里是名字',
   remove: true,
-  user: {
-    username: '',
-    password: ''
-  }
+  username: '',
+  password: ''
 }
 
 const methods = (state: any, action: any): void => {
@@ -18,10 +16,7 @@ const methods = (state: any, action: any): void => {
     case 'setUser': {
       return {
         ...state,
-        user: {
-          ...state.user,
-          ...action.data
-        }
+        ...action.data
       }
     }
 
