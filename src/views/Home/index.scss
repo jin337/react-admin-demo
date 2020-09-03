@@ -17,6 +17,12 @@ header {
     margin-left: 10px;
     color: #fff;
   }
+  .exit {
+    cursor: pointer;
+    &:hover {
+      color: #f2545a;
+    }
+  }
 }
 main {
   font-size: 14px;

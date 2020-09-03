@@ -7,8 +7,9 @@ export interface PoptipProps {
   children?: any
 }
 
-const Poptip: React.SFC<PoptipProps> = (props:PoptipProps) => {
+const Poptip: React.SFC<PoptipProps> = (props: PoptipProps) => {
   const { content, children } = props
+
   return (
     <div className="poptip-wrap">
       <div className="regular-wrap">{children}</div>
@@ -16,7 +17,7 @@ const Poptip: React.SFC<PoptipProps> = (props:PoptipProps) => {
         <div className="poptip-content">{content}</div>
       </div>
     </div>
-    )
+  )
 }
 
 export default Poptip

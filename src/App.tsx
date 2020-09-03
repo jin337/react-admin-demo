@@ -9,12 +9,13 @@ import './assets/css/react.css'
 import router, { RouteType } from './router/index'
 
 // 类型集合
-export interface AppProps {}
+export interface AppProps { }
 
 // 强制重定向到 /login 页面
 const ToLogin = () => {
   let location = useLocation()
-  return location.pathname === '/' ? <Redirect exact from='/' to='/login' /> : null
+  let isBool = !Cookie.get('REACT-ADMIN')
+  return location.pathname === '/' || isBool ? <Redirect exact to='/login' /> : null
 }
 
 // 子页面

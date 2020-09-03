@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, useHistory } from 'react-router-dom'
+import Cookie from 'js-cookie'
 
 // 导入组件
 import { Poptip, Avatar } from './../../components'
@@ -10,14 +11,23 @@ export interface HomeProps { }
 interface HeaderProps { }
 interface FooterProps { }
 
+
+
 const Header: React.SFC<HeaderProps> = () => {
+  const hostory = useHistory()
+
+  const exit = () => {
+    Cookie.remove('REACT-ADMIN')
+    hostory.replace('/login')
+  }
+
   return (
     <header>
       <div className='logo'></div>
-      <div>111</div>
-      <Poptip content={'退出'}>
+      <ul></ul>
+      <Poptip content={<div className="exit" onClick={exit}>退出</div>}>
         <Avatar icon='UserOutlined' />
-        <span className='name'>111</span>
+        <span className='name'>admin</span>
       </Poptip>
     </header>
   )
