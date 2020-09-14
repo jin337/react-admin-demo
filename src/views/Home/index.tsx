@@ -38,11 +38,27 @@ const Footer = () => {
   return <footer>this is page footer</footer>
 }
 
+const labelList = [
+  {
+    label: '11111',
+    select: true,
+    path: '/admin-index'
+  },
+  {
+    label: '22222',
+    path: '/school-index'
+  },
+  {
+    label: '33333',
+    path: '/teacher-index'
+  }
+]
+
 const Home = () => {
   return (
     <Fragment>
       <Header></Header>
-      <LabelPages></LabelPages>
+      <LabelPages list={labelList}></LabelPages>
       <main>
         <Route />
       </main>

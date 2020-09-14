@@ -2,7 +2,7 @@ import React from 'react'
 
 export interface SchoolHomeProps {}
 
-const SchoolHome: React.SFC<SchoolHomeProps> = () => {
+const SchoolHome = () => {
   return <div>SchoolHome</div>
 }
 

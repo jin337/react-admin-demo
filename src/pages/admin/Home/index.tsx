@@ -2,7 +2,7 @@ import React from 'react'
 
 export interface AdminHomeProps {}
 
-const AdminHome: React.SFC<AdminHomeProps> = () => {
+const AdminHome = () => {
   return <div>AdminHome</div>
 }
 

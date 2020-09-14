@@ -34,7 +34,12 @@
     cursor: pointer;
     background-color: #fff;
     box-shadow: 0 0 2px #ccc;
-    .box {
+    &:hover {
+      .label-show {
+        display: block;
+      }
+    }
+    .label-name {
       display: flex;
       align-items: center;
       flex-direction: row;
@@ -47,34 +52,31 @@
         border-radius: 100%;
         background-color: #e3e3e3;
       }
-      .label-name {
+      .name {
         font-size: 16px;
         overflow: hidden;
         max-width: 200px;
         margin-right: 5px;
         white-space: nowrap;
-        word-spacing: nowrap;
         text-overflow: ellipsis;
       }
     }
     .label-show {
       font-size: 14px;
+      font-weight: bold;
       position: absolute;
       z-index: 2;
       top: 30px;
       left: 0;
+      display: none;
       width: 100%;
       padding: 10px;
+      color: #2c3e50;
       background-color: #fff;
       box-shadow: 0 1px 6px rgba(0,0,0,.2);
-      .t-bold {
-        font-size: 14px;
-        font-weight: bold;
-        color: #2c3e50;
-      }
     }
-    .remove {
-      font-size: 22px;
+    .iconfont {
+      font-size: 12px;
       margin-right: 6px;
       &:hover {
         font-weight: bold;
@@ -83,13 +85,13 @@
     }
   }
   .active {
-    color: #2d8cf0;
-    .box {
+    .label-name {
+      color: #2d8cf0;
       span {
         background-color: #2d8cf0;
       }
     }
-    .icon {
+    .iconfont {
       color: #666;
     }
   }
