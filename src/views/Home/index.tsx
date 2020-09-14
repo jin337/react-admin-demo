@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Route, useHistory } from 'react-router-dom'
 import Cookie from 'js-cookie'
 
@@ -38,7 +38,7 @@ const Footer = () => {
   return <footer>this is page footer</footer>
 }
 
-const labelList = [
+const list: any = [
   {
     label: '11111',
     select: true,
@@ -55,10 +55,18 @@ const labelList = [
 ]
 
 const Home = () => {
+  const [labelList, setLabelList] = useState(list)
+
+  const removeLabel = (index: any) => {
+    let copyList: any = [...labelList]
+    copyList.splice(index, 1)
+    setLabelList(copyList)
+  }
+
   return (
     <Fragment>
       <Header></Header>
-      <LabelPages list={labelList}></LabelPages>
+      <LabelPages list={labelList} onRemove={removeLabel}></LabelPages>
       <main>
         <Route />
       </main>

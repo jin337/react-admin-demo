@@ -5,10 +5,11 @@ import { IconFont } from '../index'
 
 export interface LabelPagesProps {
   list?: any;
+  onRemove?: any;
 }
 
 const LabelPages = (props: LabelPagesProps) => {
-  const { list } = props
+  const { list, onRemove } = props
   const [Label, setLabel] = useState(null)
 
   useEffect(() => {
@@ -39,7 +40,10 @@ const LabelPages = (props: LabelPagesProps) => {
                       <div className='name'>{item.label}</div>
                     </div>
                     <div className='label-show'>{item.label}</div>
-                    <IconFont type='closeoutlined' />
+                    <IconFont
+                      type='closeoutlined'
+                      onClick={() => onRemove(index)}
+                    />
                   </div>
                 )
               })
