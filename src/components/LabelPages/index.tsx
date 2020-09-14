@@ -6,16 +6,27 @@ import { IconFont } from '../index'
 export interface LabelPagesProps {
   list?: any;
   onRemove?: any;
+  onSelect?: any;
 }
 
 const LabelPages = (props: LabelPagesProps) => {
-  const { list, onRemove } = props
+  const { list, onRemove, onSelect } = props
   const [Label, setLabel] = useState(null)
 
   useEffect(() => {
-    let active = list.filter((e: any) => e.select === true)
-    setLabel(active[0])
+    let select = list.filter((e: any) => !!e.select === true)
+    setLabel(select[0])
   }, [list])
+
+  const selectLabel = (index: any) => {
+    onSelect(index)
+  }
+
+  const Remove = (index: any) => {
+    let copyList: any = [...list]
+    copyList.splice(index, 1)
+    onRemove(copyList)
+  }
 
   return (
     <div className='label-pages'>
@@ -35,14 +46,14 @@ const LabelPages = (props: LabelPagesProps) => {
                     key={index}>
                     <div
                       className='label-name'
-                      onClick={() => setLabel(list[index])}>
+                      onClick={() => selectLabel(index)}>
                       <span></span>
                       <div className='name'>{item.label}</div>
                     </div>
                     <div className='label-show'>{item.label}</div>
                     <IconFont
                       type='closeoutlined'
-                      onClick={() => onRemove(index)}
+                      onClick={() => Remove(index)}
                     />
                   </div>
                 )

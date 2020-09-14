@@ -42,35 +42,49 @@ const list: any = [
   {
     label: '11111',
     select: true,
-    path: '/admin-index'
+    path: '/home/admin-index'
   },
   {
     label: '22222',
-    path: '/school-index'
+    path: '/home/school-index'
   },
   {
     label: '33333',
-    path: '/teacher-index'
+    path: '/home/teacher-index'
   }
 ]
 
 const Home = () => {
   const [labelList, setLabelList] = useState(list)
 
-  const removeLabel = (index: any) => {
-    let copyList: any = [...labelList]
-    copyList.splice(index, 1)
-    setLabelList(copyList)
+  // 切换标签
+  const selectLabel = (index: any) => {
+    let data = [...labelList]
+    for (let i = 0; i < data.length; i++) {
+      const element = data[i]
+      element.select = false
+      if (i === index) {
+        element.select = true
+      }
+    }
+    setLabelList(data)
+  }
+  // 删除标签
+  const removeLabel = (data: any) => {
+    setLabelList(data)
   }
 
   return (
     <Fragment>
       <Header></Header>
-      <LabelPages list={labelList} onRemove={removeLabel}></LabelPages>
+      <LabelPages
+        list={labelList}
+        onSelect={selectLabel}
+        onRemove={removeLabel}></LabelPages>
       <main>
         <Route />
       </main>
-      <Footer></Footer>
+      <Footer />
     </Fragment>
   )
 }

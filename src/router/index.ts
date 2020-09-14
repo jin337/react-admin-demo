@@ -31,19 +31,19 @@ const router: RouteType[] = [
     requireAuth: user
   },
   {
-    path: '/admin-index',
+    path: '/home/admin-index',
     name: 'AdminHome',
     component: AdminHome,
     requireAuth: admin
   },
   {
-    path: '/school-index',
+    path: '/home/school-index',
     name: 'SchoolHome',
     component: SchoolHome,
     requireAuth: school
   },
   {
-    path: '/teacher-index',
+    path: '/home/teacher-index',
     name: 'TeacherHome',
     component: TeacherHome,
     requireAuth: teacher
