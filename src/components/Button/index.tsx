@@ -10,7 +10,7 @@ export interface ButtonProps {
   children?: any
 }
 
-const Button: React.SFC<ButtonProps> = (props) => {
+const Button = (props:ButtonProps) => {
   const { type, long, onClick, children, size } = props
   return (
     <div className={`btn btn-${type} ${long ? 'btn-long' : ''} ${size ? 'btn-' + size : 'default'}`} onClick={onClick}>

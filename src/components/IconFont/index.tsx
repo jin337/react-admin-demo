@@ -44,7 +44,7 @@ const iconData: any = {
   ]
 }
 
-const IconFont: React.SFC<IconFontProps> = (props: IconFontProps) => {
+const IconFont = (props: IconFontProps) => {
   const { type, style, onClick } = props
 
   const [iconName] = useState(type.toLowerCase())
@@ -55,7 +55,7 @@ const IconFont: React.SFC<IconFontProps> = (props: IconFontProps) => {
   }, [iconName])
 
   return (
-    <span role='img' style={style} aria-label={iconName} className='anticon' onClick={onClick}>
+    <span role='img' style={style} aria-label={iconName} className='iconfont' onClick={onClick}>
       <svg viewBox='64 64 896 896' focusable='false' data-icon={iconName} width='1em' height='1em' fill='currentColor' aria-hidden='true'>
         {font ? font.map((item: string, index: number) => <path key={index} d={item} />) : null}
       </svg>

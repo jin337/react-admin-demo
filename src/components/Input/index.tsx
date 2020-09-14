@@ -12,7 +12,7 @@ export interface InputProps {
   onChange?: any
 }
 
-const Input: React.SFC<InputProps> = (props: InputProps) => {
+const Input = (props: InputProps) => {
   const { suffix, prefix, size, value,type, placeholder, onChange } = props
 
   return (

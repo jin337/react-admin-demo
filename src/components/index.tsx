@@ -4,5 +4,6 @@ import Button from './Button/index'
 import IconFont from './IconFont/index'
 import Poptip from './Poptip/index'
 import Avatar from './Avatar/index'
+import LabelPages from './LabelPages/index'
 
-export { Input, Checkbox, Button, IconFont, Poptip, Avatar }
+export { Input, Checkbox, Button, IconFont, Poptip, Avatar, LabelPages }

@@ -3,17 +3,13 @@ import { Route, useHistory } from 'react-router-dom'
 import Cookie from 'js-cookie'
 
 // 导入组件
-import { Poptip, Avatar } from './../../components'
+import { Poptip, Avatar, LabelPages } from './../../components'
 
 import './index.css'
 
-export interface HomeProps { }
-interface HeaderProps { }
-interface FooterProps { }
+export interface HomeProps {}
 
-
-
-const Header: React.SFC<HeaderProps> = () => {
+const Header = () => {
   const hostory = useHistory()
 
   const exit = () => {
@@ -25,7 +21,12 @@ const Header: React.SFC<HeaderProps> = () => {
     <header>
       <div className='logo'></div>
       <ul></ul>
-      <Poptip content={<div className="exit" onClick={exit}>退出</div>}>
+      <Poptip
+        content={
+          <div className='exit' onClick={exit}>
+            退出
+          </div>
+        }>
         <Avatar icon='UserOutlined' />
         <span className='name'>admin</span>
       </Poptip>
@@ -33,14 +34,15 @@ const Header: React.SFC<HeaderProps> = () => {
   )
 }
 
-const Footer: React.SFC<FooterProps> = () => {
+const Footer = () => {
   return <footer>this is page footer</footer>
 }
 
-const Home: React.SFC<HomeProps> = () => {
+const Home = () => {
   return (
     <Fragment>
       <Header></Header>
+      <LabelPages></LabelPages>
       <main>
         <Route />
       </main>

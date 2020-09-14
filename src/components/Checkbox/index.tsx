@@ -7,7 +7,7 @@ export interface CheckboxProps {
   children?: string
 }
 
-const Checkbox: React.SFC<CheckboxProps> = (props) => {
+const Checkbox = (props:CheckboxProps) => {
   const { checked, onChange, children } = props
 
   const [checke, setChecked] = useState(checked)

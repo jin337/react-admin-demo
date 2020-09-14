@@ -8,7 +8,7 @@ export interface AvatarProps {
   children?: any
 }
 
-const Avatar: React.SFC<AvatarProps> = (props) => {
+const Avatar  = (props:AvatarProps) => {
   const { icon, children } = props
   return (
     <div className='avatar-wrap'>

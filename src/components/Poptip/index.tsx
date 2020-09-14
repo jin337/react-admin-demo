@@ -7,7 +7,7 @@ export interface PoptipProps {
   children?: any
 }
 
-const Poptip: React.SFC<PoptipProps> = (props: PoptipProps) => {
+const Poptip = (props: PoptipProps) => {
   const { content, children } = props
 
   return (
