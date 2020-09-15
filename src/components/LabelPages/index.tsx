@@ -43,6 +43,7 @@ const LabelPages = (props: LabelPagesProps) => {
       }
     }
     onRemove(copyList, select)
+    onSelect(select)
   }
   // 关闭所有
   const removeAll = () => {

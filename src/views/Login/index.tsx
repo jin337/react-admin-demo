@@ -18,7 +18,8 @@ const Login = () => {
   const submit = () => {
     let key = {
       username: login.username,
-      password: login.password
+      password: login.password,
+      role_id: 1
     }
     let type = Object.values(key).every((e) => e !== '')
     if (type) {
@@ -35,7 +36,12 @@ const Login = () => {
           <div className='form-item'>
             <Input
               value={login.username}
-              onChange={(e: any) => dispatch({ type: 'setUser', data: { username: e.target.value } })}
+              onChange={(e: any) =>
+                dispatch({
+                  type: 'setUser',
+                  data: { username: e.target.value }
+                })
+              }
               prefix='UserOutlined'
               placeholder='请填写用户名'
             />
@@ -44,13 +50,20 @@ const Login = () => {
             <Input
               type='password'
               value={login.password}
-              onChange={(e: any) => dispatch({ type: 'setUser', data: { password: e.target.value } })}
+              onChange={(e: any) =>
+                dispatch({
+                  type: 'setUser',
+                  data: { password: e.target.value }
+                })
+              }
               prefix='UnlockOutlined'
               placeholder='请填写密码'
             />
           </div>
           <div className='form-item online'>
-            <Checkbox checked={login.remove} onChange={() => dispatch({ type: 'removeUser' })}>
+            <Checkbox
+              checked={login.remove}
+              onChange={() => dispatch({ type: 'removeUser' })}>
               记住密码
             </Checkbox>
             <div className='right'>

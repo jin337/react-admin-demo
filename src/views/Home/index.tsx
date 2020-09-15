@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Route, useHistory } from 'react-router-dom'
 
 // 导入组件
@@ -47,18 +47,39 @@ const Home = () => {
 
   const hostory = useHistory()
 
+  // 筛选当前选中项
+  const backRoute = (router: any, value: any) => {
+    const now = router.filter((e: any) => e.name === value.name)
+    return now[0] || {}
+  }
+
+  // 默认选择
+  useEffect(() => {
+    let isBool = !labelList.length
+    if (isBool) {
+      let first = menu[0]
+      setLabelList([first])
+      setValue(first)
+      let label = backRoute(router, first)
+      if (!!label.component) {
+        first.component = label.component
+      }
+      setActiveRoute(label)
+    }
+  }, [labelList, value])
+
   // 切换标签&无当前标签，则添加
   const addLabel = (value: any) => {
-    setValue(value)
-    hostory.push(value.path)
-
-    const now = router.filter((e) => e.name === value.name)
-    value.component = now[0].component
-    if (value.component) {
-      setActiveRoute(value)
+    let label = backRoute(router, value)
+    if (!!label.component) {
+      value.component = label.component
+      hostory.push(value.path)
     }
 
-    if (!labelList.includes(value)) {
+    setValue(value)
+    setActiveRoute(label)
+
+    if (!labelList.includes(value) && !!value.path) {
       let copyList = [...labelList]
       copyList.push(value)
       setLabelList(copyList)
@@ -69,10 +90,6 @@ const Home = () => {
   const removeLabel = (data: any, value: any) => {
     setLabelList(data)
     setValue(value)
-
-    if (!value.path) {
-      hostory.push('/home')
-    }
   }
 
   return (
