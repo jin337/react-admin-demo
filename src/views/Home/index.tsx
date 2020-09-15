@@ -30,7 +30,7 @@ const menu: any = [
     name: 'SchoolHome'
   },
   {
-    label: '管理台',
+    label: '管理台啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦',
     pid: 3,
     icon: 'settingfilled',
     path: '/home/teacher-index/2',
@@ -60,13 +60,15 @@ const Home = () => {
       let first = menu[0]
       setLabelList([first])
       setValue(first)
+
       let label = backRoute(router, first)
       if (!!label.component) {
         first.component = label.component
+        hostory.push(first.path)
+        setActiveRoute(first)
       }
-      setActiveRoute(label)
     }
-  }, [labelList, value])
+  }, [hostory, labelList, value])
 
   // 切换标签&无当前标签，则添加
   const addLabel = (value: any) => {
