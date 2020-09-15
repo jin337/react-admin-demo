@@ -10,7 +10,7 @@ export interface RouteType {
   name?: string
   component?: (() => JSX.Element) | any
   requireAuth?: boolean | number[]
-  routes?: void
+  routes?: any
 }
 
 const user = [1, 2, 3, 4, 5]
@@ -37,13 +37,13 @@ const router: RouteType[] = [
     requireAuth: admin
   },
   {
-    path: '/home/school-index',
+    path: '/home/school-index/:id',
     name: 'SchoolHome',
     component: SchoolHome,
     requireAuth: school
   },
   {
-    path: '/home/teacher-index',
+    path: '/home/teacher-index/:id',
     name: 'TeacherHome',
     component: TeacherHome,
     requireAuth: teacher
