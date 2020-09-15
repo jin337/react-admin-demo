@@ -1,31 +1,46 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import './index.css'
 import { IconFont } from '../index'
 
 export interface LabelPagesProps {
   list?: any;
+  value?: any;
   onRemove?: any;
   onSelect?: any;
 }
 
 const LabelPages = (props: LabelPagesProps) => {
-  const { list, onRemove, onSelect } = props
-  const [Label, setLabel] = useState(null)
+  const { value, list, onRemove, onSelect } = props
 
-  useEffect(() => {
-    let select = list.filter((e: any) => !!e.select === true)
-    setLabel(select[0])
-  }, [list])
-
-  const selectLabel = (index: any) => {
+  // 选中事件
+  const selectLabel = (index: number) => {
     onSelect(index)
   }
-
-  const Remove = (index: any) => {
+  // 关闭事件
+  const Remove = (index: number) => {
     let copyList: any = [...list]
     copyList.splice(index, 1)
-    onRemove(copyList)
+
+    let select = value
+    if (value === index) {
+      if (copyList.length) {
+        select = copyList.length - 1
+      } else {
+        select = 0
+      }
+    }
+    onRemove(copyList, select)
+  }
+  // 关闭所有
+  const removeAll = () => {
+    onRemove([], 0)
+  }
+  // 关闭其他
+  const removeOther = () => {
+    let copyList: any = [...list]
+    let other = copyList.filter((e: any, index: number) => index === value)
+    onRemove(other, value)
   }
 
   return (
@@ -40,7 +55,7 @@ const LabelPages = (props: LabelPagesProps) => {
             ? list.map((item: any, index: any) => {
                 return (
                   <div
-                    className={['item', Label === item ? 'active' : null].join(
+                    className={['item', value === index ? 'active' : null].join(
                       ' '
                     )}
                     key={index}>
@@ -69,8 +84,8 @@ const LabelPages = (props: LabelPagesProps) => {
         <div className='direction icon'>
           <IconFont type='closeoutlined' />
           <ul className='operate'>
-            <li>关闭所有</li>
-            <li>关闭其他</li>
+            <li onClick={removeAll}>关闭所有</li>
+            <li onClick={removeOther}>关闭其他</li>
           </ul>
         </div>
       </div>

@@ -56,28 +56,23 @@ const list: any = [
 
 const Home = () => {
   const [labelList, setLabelList] = useState(list)
+  const [value, setValue] = useState(0)
 
   // 切换标签
   const selectLabel = (index: any) => {
-    let data = [...labelList]
-    for (let i = 0; i < data.length; i++) {
-      const element = data[i]
-      element.select = false
-      if (i === index) {
-        element.select = true
-      }
-    }
-    setLabelList(data)
+    setValue(index)
   }
   // 删除标签
-  const removeLabel = (data: any) => {
+  const removeLabel = (data: any, index: number) => {
     setLabelList(data)
+    setValue(index)
   }
 
   return (
     <Fragment>
       <Header></Header>
       <LabelPages
+        value={value}
         list={labelList}
         onSelect={selectLabel}
         onRemove={removeLabel}></LabelPages>
