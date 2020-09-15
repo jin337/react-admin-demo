@@ -4,43 +4,55 @@ import './index.css'
 import { IconFont } from '../index'
 
 export interface LabelPagesProps {
-  list?: any;
-  value?: any;
-  onRemove?: any;
-  onSelect?: any;
+  list?: any
+  label?: any
+  onRemove?: any
+  onSelect?: any
+}
+
+interface LabelProps {
+  label: string
+  path: string
+  index?: number
 }
 
 const LabelPages = (props: LabelPagesProps) => {
-  const { value, list, onRemove, onSelect } = props
+  const { label, list, onRemove, onSelect } = props
 
   // 选中事件
-  const selectLabel = (index: number) => {
-    onSelect(index)
+  const selectLabel = (item: LabelProps) => {
+    onSelect(item)
   }
   // 关闭事件
-  const Remove = (index: number) => {
+  const Remove = (item: LabelProps) => {
     let copyList: any = [...list]
+    let index: number | null = null
+    for (let i = 0; i < copyList.length; i++) {
+      const element = copyList[i]
+      if (element === item) {
+        index = i
+      }
+    }
     copyList.splice(index, 1)
-
-    let select = value
-    if (value === index) {
+    let select = { ...label }
+    if (!copyList.includes(select)) {
       if (copyList.length) {
-        select = copyList.length - 1
+        select = copyList[copyList.length - 1]
       } else {
-        select = 0
+        select = {}
       }
     }
     onRemove(copyList, select)
   }
   // 关闭所有
   const removeAll = () => {
-    onRemove([], 0)
+    onRemove([], {})
   }
   // 关闭其他
   const removeOther = () => {
-    let copyList: any = [...list]
-    let other = copyList.filter((e: any, index: number) => index === value)
-    onRemove(other, value)
+    let copyList: LabelProps[] = [...list]
+    let other = copyList.filter((item: LabelProps) => item === label)
+    onRemove(other, label)
   }
 
   return (
@@ -52,23 +64,24 @@ const LabelPages = (props: LabelPagesProps) => {
       <div className='label-list'>
         <div className='item-box'>
           {list
-            ? list.map((item: any, index: any) => {
+            ? list.map((item: LabelProps, index: number) => {
                 return (
                   <div
-                    className={['item', value === index ? 'active' : null].join(
-                      ' '
-                    )}
+                    className={[
+                      'item',
+                      label.path === item.path ? 'active' : null
+                    ].join(' ')}
                     key={index}>
                     <div
                       className='label-name'
-                      onClick={() => selectLabel(index)}>
+                      onClick={() => selectLabel(item)}>
                       <span></span>
                       <div className='name'>{item.label}</div>
                     </div>
                     <div className='label-show'>{item.label}</div>
                     <IconFont
                       type='closeoutlined'
-                      onClick={() => Remove(index)}
+                      onClick={() => Remove(item)}
                     />
                   </div>
                 )

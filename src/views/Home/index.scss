@@ -12,6 +12,32 @@ header {
     border-radius: 3px;
     background: #5b6270;
   }
+  ul {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    width: 60%;
+    height: 100%;
+    li {
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      height: 100%;
+      padding: 0 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      opacity: .4;
+      color: #fff;
+      .iconfont {
+        margin-right: 6px;
+      }
+    }
+    .active {
+      opacity: 1;
+    }
+  }
   .name {
     font-size: 16px;
     margin-left: 10px;

@@ -1,1 +1,1 @@
-.avatar-wrap{display:flex;align-items:center;flex-direction:row;justify-content:center;width:40px;height:40px;border-radius:100%;background-color:#ccc}.avatar-wrap span{font-size:20px;font-weight:bold;color:#fff}
+.avatar-wrap{display:flex;align-items:center;flex-direction:row;justify-content:center;border-radius:100%;background-color:#ccc}.avatar-wrap span{font-size:20px;font-weight:bold;color:#fff}.avatar-large{width:50px;height:50px}.avatar-large span{font-size:30px}.avatar-default{width:40px;height:40px}.avatar-small{width:30px;height:30px}
