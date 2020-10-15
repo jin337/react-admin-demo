@@ -16,21 +16,21 @@ export interface HomeProps {}
 
 const menu: any = [
   {
-    label: '工作台',
+    label: '工作台1',
     pid: 1,
     icon: 'reconciliationfilled',
     path: '/home/admin-index',
     name: 'AdminHome'
   },
   {
-    label: '数据计算',
+    label: '工作台2',
     pid: 2,
     icon: 'fundfilled',
     path: '/home/school-index/1',
     name: 'SchoolHome'
   },
   {
-    label: '管理台啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦',
+    label: '工作台3',
     pid: 3,
     icon: 'settingfilled',
     path: '/home/teacher-index/2',
